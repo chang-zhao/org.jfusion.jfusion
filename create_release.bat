@@ -15,11 +15,10 @@ IF NOT EXIST c:\WINDOWS\system32\sed.exe (
 	echo "sed.exe does not exist! Please see create_release_readme.txt". 
 	goto end
 )
-IF NOT EXIST "C:\Program Files\Git\bin\git.exe"  (
-	IF NOT EXIST "C:\Program Files (x86)\Git\bin\git.exe"  (
-		echo "Git client not installed!  Please see create_release_readme.txt". 
-		goto end
-	)
+@git.exe>nul
+IF ERRORLEVEL 2 (
+	echo "Git client not installed!  Please see create_release_readme.txt". 
+	goto end
 )
 
 SET REVISION=Unknown
